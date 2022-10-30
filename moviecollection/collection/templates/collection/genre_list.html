@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+<ul class="list-group">
+    {% for genre in genre_list %}
+    <li class="list-group-item">
+        <a href="{% url 'collection:genre_detail' genre.id  %}">{{ genre.label }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

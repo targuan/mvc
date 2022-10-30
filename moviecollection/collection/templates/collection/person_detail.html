@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>{{ person.name }}</h1>
+            <h2>{% trans "Filmography" %}</h2>
+            {% if person.play_in.all|length %}
+            <h3>{% trans "Actor" %}</h3>
+            <ul class="list-group">
+                {% for movie in person.play_in.all %}
+                <li class="list-group-item">
+                    {% include "collection/movie_summary.html" with movie=movie %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% if person.direct.all|length %}
+            <h3>{% trans "Director" %}</h3>
+            <ul class="list-group">
+                {% for movie in person.direct.all %}
+                <li class="list-group-item">
+                    {% include "collection/movie_summary.html" with movie=movie %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

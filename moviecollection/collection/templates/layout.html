@@ -1,0 +1,113 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% trans "Film library" %}</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
+    <style>
+        
+        .list-group-item {
+            padding: 0.2rem;
+        }
+        .list-group-item h1 {
+            font-size:1rem;
+        }
+        .camera-icon {
+            display: inline-block;
+            width: 1.5em;
+            height: 1.5em;
+            vertical-align: middle;
+            content: "";
+            background: no-repeat center center;
+            background-size: 100% 100%;
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 333.668 333.668' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M295.101,298.649H38.561C17.295,298.649,0,281.354,0,260.088V103.703c0-21.266,17.295-38.561,38.561-38.561h52.347l4.582-15.457c1.87-8.458,9.602-14.666,18.696-14.666h105.297c8.837,0,16.658,6.176,18.728,14.743l0.122,0.527l4.177,14.852h52.597c21.266,0,38.561,17.295,38.561,38.561v156.384C333.662,281.354,316.361,298.649,295.101,298.649z M38.561,77.996c-14.178,0-25.707,11.53-25.707,25.707v156.384c0,14.178,11.53,25.707,25.707,25.707h256.54c14.178,0,25.707-11.53,25.707-25.707V103.703c0-14.178-11.53-25.707-25.707-25.707h-62.327l-7.037-25.097c-0.649-2.918-3.278-5.032-6.26-5.032H114.179c-3.027,0-5.598,2.069-6.26,5.039l-7.429,25.09H38.561z M166.841,259.798c-44.981,0-81.576-36.588-81.576-81.563c0-44.981,36.594-81.569,81.576-81.569c44.969,0,81.557,36.594,81.557,81.569C248.397,223.204,211.809,259.798,166.841,259.798z M166.841,109.513c-37.893,0-68.722,30.823-68.722,68.716s30.83,68.709,68.722,68.709c37.886,0,68.703-30.823,68.703-68.709	C235.543,140.336,204.72,109.513,166.841,109.513z M286.804,101.852c-6.555,0-11.858,5.315-11.858,11.858	c0,6.549,5.302,11.857,11.858,11.857c6.549,0,11.851-5.309,11.851-11.857C298.649,107.167,293.346,101.852,286.804,101.852z'/%3E%3C/svg%3E") !important;
+            padding: 0;
+            border: none;
+            /*height:100%;*/
+            
+        }
+        .barcodescanner input{
+            opacity: 0;
+            width: 1.5em;
+            height: 1.5em;
+        }
+        .input-group-prepend {
+            background-color: #eeeeee;
+            border-left: 1px solid #ced4da;
+            border-top: 1px solid #ced4da;
+            border-bottom: 1px solid #ced4da;
+            border-bottom-left-radius: 4px;
+            border-top-left-radius: 4px;
+            vertical-align: middle;
+            line-height: 2
+        }
+    </style>
+    
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>Menu
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'collection:movie_list' %}">{% trans "Movies" %}</a></li>
+                <li class="nav-item"><a  class="nav-link"href="{% url 'collection:actor_list' %}">{% trans "Actors" %}</a></li>
+                <li class="nav-item"><a  class="nav-link"href="{% url 'collection:director_list' %}">{% trans "Directors" %}</a></li>
+                <li class="nav-item"><a  class="nav-link"href="{% url 'collection:genre_list' %}">{% trans "Genres" %}</a></li>
+                <li class="nav-item"><a  class="nav-link"href="{% url 'collection:country_list' %}">{% trans "Countries" %}</a></li>
+                {% block navbar %}
+                {% endblock %}
+            </ul>
+            <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'collection:search' %}">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                            <button class="camera-icon barcodescanner" type="button" data-target="#searchField">
+                                <input type="file" accept="image/*">
+                            </button>
+                    </div>
+                    <input name="search" class="form-control mr-sm-2" id="searchField" type="search" placeholder="{% trans "Search" %}" aria-label="{% trans "Search" %}">
+                </div>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{% trans "Search" %}</button>
+            </form>
+        </div>
+    </nav>
+    
+    <!--<div id="scanner"></div>-->
+    <div class="container-fluid" style="margin-top: 4em">
+        
+        {% block content %}
+        {% endblock %}
+    </div>
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <video id="video" style="border: 1px solid gray; max-width: 100%; max-height: 100%"></video>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="{% static 'js/scanner.js' %}"></script>
+</body>
+</html>

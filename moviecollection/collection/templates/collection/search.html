@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+{% if movies %}
+<h1>{% trans "Search result from the collection" %}</h1>
+<ul class="list-group">
+    {% for movie in movies %}
+    <li class="list-group-item">
+        {% include "collection/movie_summary.html" with movie=movie %}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<p><a href="{% url 'collection:search_external' %}?search={{ search }}">{% trans "Didn't found what you are looking for ? Search online" %}</a></p>
+{% endblock %}

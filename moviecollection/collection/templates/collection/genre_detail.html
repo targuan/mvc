@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+<h1>{{ genre.label }}</h1>
+<ul class="list-group">
+    {% for movie in genre.movies.all %}
+    <li class="list-group-item">
+        {% include "collection/movie_summary.html" with movie=movie %}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

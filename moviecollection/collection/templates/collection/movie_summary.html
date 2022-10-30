@@ -1,0 +1,25 @@
+{% load static %}
+{% load i18n %}
+
+
+<a href="{% url 'collection:movie_detail' movie.id %}">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-auto">
+                <img src="{% static "" %}covers/{{ movie.id }}.jpg" style="max-height: 80px">
+            </div>
+            <div class="col">
+                <h1>{{ movie.title }}</h1>
+                {% if movie.genres.all|length %}
+                <div>{{ movie.genres.all|join:", " }}</div>
+                {% endif %}
+                {% if movie.year %}
+                <div>{% trans "Release date" %} {{ movie.year }}</div>
+                {% endif %}
+                {% if movie.directors.all|length %}
+                <div>{% trans "Directed by" %} {{ movie.directors.all|join:", " }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</a>

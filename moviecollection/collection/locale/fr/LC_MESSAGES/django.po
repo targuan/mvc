@@ -1,0 +1,116 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-26 08:37+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: collection/templates/collection/movie_detail.html:8
+msgid "More"
+msgstr "Plus"
+
+#: collection/templates/collection/movie_detail.html:11
+msgid "Edit"
+msgstr "Modifier"
+
+#: collection/templates/collection/movie_detail.html:12
+msgid "Delete"
+msgstr "Supprimer"
+
+#: collection/templates/collection/movie_detail.html:41
+#: collection/templates/collection/movie_summary.html:17
+#: collection/templates/collection/preview_external.html:46
+#: collection/templates/collection/search_external.html:19
+msgid "Release date"
+msgstr "Sortie en"
+
+#: collection/templates/collection/movie_detail.html:44
+#: collection/templates/collection/movie_summary.html:20
+#: collection/templates/collection/preview_external.html:49
+#: collection/templates/collection/search_external.html:20
+msgid "Directed by"
+msgstr "Réalisé par"
+
+#: collection/templates/collection/movie_detail.html:51
+#: collection/templates/collection/preview_external.html:56
+msgid "Starring"
+msgstr "Acteurs principaux"
+
+#: collection/templates/collection/person_detail.html:10
+msgid "Filmography"
+msgstr "Filmographie"
+
+#: collection/templates/collection/person_detail.html:12
+msgid "Actor"
+msgstr "Acteur"
+
+#: collection/templates/collection/person_detail.html:22
+msgid "Director"
+msgstr "Réalisateur"
+
+#: collection/templates/collection/preview_external.html:10
+msgid "The following movies in your collection have the same title"
+msgstr "Ce films dans votre bibliothèque ont le même titre"
+
+#: collection/templates/collection/preview_external.html:21
+msgid "This movie has not been added yet, see bellow"
+msgstr "Ce film n'a pas encore été ajouté"
+
+#: collection/templates/collection/preview_external.html:66
+msgid "Add this movie to your collection"
+msgstr "Ajouter ce film a votre collection"
+
+#: collection/templates/collection/search.html:7
+msgid "Search result from the collection"
+msgstr "Résultat de la recherche dans la collection"
+
+#: collection/templates/collection/search.html:16
+msgid "Didn't found what you are looking for ? Search online"
+msgstr "Vous n'avez pas trouver votre film ? Recherchez sur internet"
+
+
+#: collection/templates/collection/search_external.html:7
+msgid "Search result"
+msgstr "Résultats de la recherche"
+
+
+#: collection/templates/layout.html:8
+msgid "Film library"
+msgstr "Filmothèque"
+
+#: collection/templates/layout.html:63
+msgid "Movies"
+msgstr "Films"
+
+#: collection/templates/layout.html:64
+msgid "Actors"
+msgstr "Acteurs"
+
+#: collection/templates/layout.html:65
+msgid "Directors"
+msgstr "Réalisateurs"
+
+#: collection/templates/layout.html:66
+msgid "Genres"
+msgstr "Genres"
+
+#: collection/templates/layout.html:67
+msgid "Countries"
+msgstr "Pays"
+
+#: collection/templates/layout.html:78 collection/templates/layout.html:80
+msgid "Search"
+msgstr "Rechercher"

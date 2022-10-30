@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+{% if movies %}
+<h1>{% trans "Search result" %}</h1>
+<ul class="list-group">
+    {% for movie in movies %}
+    <li class="list-group-item">
+        <a href="{% url 'collection:preview_external' movie.id %}">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-auto">
+                        <img src="{{ movie.cover }}" style="max-height: 80px">
+                    </div>
+                    <div class="col">
+                        <h1>{{ movie.titles.fr }}</h1>
+                        <div>{% trans "Release date" %} {{ movie.year }}</div>
+                        <div>{% trans "Directed by" %} {{ movie.directors|join:", " }}</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

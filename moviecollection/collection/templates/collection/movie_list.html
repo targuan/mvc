@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+<div class="row">
+    {% for movie in movie_list %}
+    
+    <div class="mb-1 col-xl-2 col-lg-3 col-md-4 col-sm-6">
+            <a href="{% url 'collection:movie_detail' movie.id %}">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <img src="{% static "" %}covers/{{ movie.id }}.jpg" style="max-height: 100px;"/>
+                <h5 class="card-title">{{ movie.title }}</h5>
+                {% if movie.genres.all|length %}
+                <div>{{ movie.genres.all|join:", " }}</div>
+                {% endif %}
+                {% if movie.year %}
+                <div>{% trans "Release date" %} {{ movie.year }}</div>
+                {% endif %}
+                {% if movie.directors.all|length %}
+                <div>{% trans "Directed by" %} {{ movie.directors.all|join:", " }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </a>
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock %}

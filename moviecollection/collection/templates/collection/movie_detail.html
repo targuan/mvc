@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block navbar %}
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {% trans "More" %}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{% url 'collection:movie_delete' movie.id %}">{% trans "Delete" %}</a>
+    </div>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-auto mx-auto">
+            <img src="{% static "" %}covers/{{ movie.id }}.jpg">
+        </div>
+        <div class="col">
+            <h1>{{ movie.title }}</h1>
+            {% if movie.vo_title %}<h2>{{ movie.vo_title }}</h2>{% endif %}
+            {% if movie.countries.all|length %}
+            <div>
+                {% for country in movie.countries.all %}
+                <a href="{% url 'collection:country_detail' country.id %}">{{ country.label }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if movie.genres.all|length %}
+            <div>
+                {% for genre in movie.genres.all %}
+                <a href="{% url 'collection:genre_detail' genre.id %}">{{ genre.label }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if movie.year %}
+            <div>{% trans "Release date" %} {{ movie.year }}</div>
+            {% endif %}
+            {% if movie.directors.all|length %}
+            <div>{% trans "Directed by" %}
+                {% for star in movie.directors.all %}
+                <a href="{% url 'collection:star_detail' star.id %}">{{ star.name }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if movie.actors.all|length %}
+            <div>{% trans "Starring" %}
+                {% for star in movie.actors.all %}
+                <a href="{% url 'collection:star_detail' star.id %}">{{ star.name }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if movie.description %}
+            <p class="mt-3 text-justify">{{ movie.description }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+django
+psycopg2
+num2words
+djangorestframework
+django-cors-headers
+markdown
+django-filter
+requests
+filelock

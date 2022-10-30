@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+<ul class="list-group">
+    {% for person in person_list %}
+    <li class="list-group-item">
+        <a href="{% url 'collection:star_detail' person.id %}">{{ person.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

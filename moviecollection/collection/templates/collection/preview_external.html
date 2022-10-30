@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+
+{% if existing|length > 0 %}
+<div class="row alert alert-danger" role="alert">
+        {% trans "The following movies in your collection have the same title" %}
+</div>
+<ul class="list-group">
+    {% for movie in existing %}
+    <li class="list-group-item">
+        {% include "collection/movie_summary.html" with movie=movie %}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="row alert alert-warning mt-3" role="alert">
+        {% trans "This movie has not been added yet, see bellow" %}
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-auto mx-auto">
+            <img src="{{ movie.cover }}" />
+        </div>
+        <div class="col">
+            <h1>{{ movie.title }}</h1>
+            {% if movie.vo_title %}<h2>{{ movie.vo_title }}</h2>{% endif %}
+            {% if movie.countries|length %}
+            <div>
+                {% for country in movie.countries %}
+                {{ country }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if movie.genres|length %}
+            <div>
+                {% for genre in movie.genres %}
+                {{ genre }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if movie.year %}
+            <div>{% trans "Release date" %} {{ movie.year }}</div>
+            {% endif %}
+            {% if movie.directors|length %}
+            <div>{% trans "Directed by" %}
+                {% for star in movie.directors %}
+                {{ star }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if movie.actors|length %}
+            <div>{% trans "Starring" %}
+                {% for star in movie.actors %}
+                {{ star }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if movie.description %}
+            <p class="mt-3 text-justify">{{ movie.description }}</p>
+            {% endif %}
+            <p>
+                <a class="btn btn-success" href="{% url 'collection:import_external' movie.id %}">{% trans "Add this movie to your collection" %}</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

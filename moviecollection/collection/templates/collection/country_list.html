@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+<ul class="list-group">
+    {% for country in country_list %}
+    <li class="list-group-item">
+        <a href="{% url 'collection:country_detail' country.id  %}">{{ country.label }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
